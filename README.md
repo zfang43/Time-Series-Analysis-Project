@@ -5,7 +5,7 @@
 This project investigates the adaptability of time series models in predicting abnormal financial market volatility caused by major social events, specifically the COVID-19 pandemic and the 2020 U.S. Presidential Election. By analyzing five S&P 500 sector ETFs (XLV, XLE, XLF, XLI, XLK), we implemented ARMA-GJR-GARCH models to capture asymmetric volatility and evaluated risk through Value-at-Risk (VaR) forecasting.
 
 ## Section 2: Methodology
-1. Data Selection & Preprocessing
+#### 1. Data Selection & Preprocessing
    
 Assets: Five industry-representative ETFs: Healthcare (XLV), Energy (XLE), Financial (XLF), Industrial (XLI), and Technology (XLK).
 
@@ -55,6 +55,7 @@ Value-at-Risk (VaR): Calculated and visualized 95% confidence interval coverage 
   5261_group20.pdf: The complete technical report containing mathematical formulations and result plots.
   
   5261 Presentation_Group20.pdf: The final Powerpoint used for presentation.
+
 
 Github Code Contributors:
 * Zi Fang/zf2258
