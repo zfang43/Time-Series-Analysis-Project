@@ -11,7 +11,7 @@ Assets: Five industry-representative ETFs: Healthcare (XLV), Energy (XLE), Finan
 
 Transformation: Daily closing prices were converted to log-returns to ensure stationarity, validated by Exploratory Data Analysis (EDA) and volatility clustering observations.
 
-2. Model Specification
+#### 2. Model Specification
    
 The project follows a two-stage modeling approach for each sector:
 
@@ -25,13 +25,13 @@ Student-t Distribution (std): For XLV, XLI, and XLE.
 
 Skewed Student-t Distribution (sstd): For XLK and XLF.
 
-3. Model Validation & Diagnostics
+#### 3. Model Validation & Diagnostics
    
 Statistical Testing: Applied Weighted Ljung-Box Test and Weighted ARCH-LM Test on standardized residuals to confirm the absence of remaining serial correlation and ARCH effects.
 
 Information Criteria: Final models were selected based on the minimum AIC and BIC values.
 
-4. Forecasting & Risk Assessment
+#### 4. Forecasting & Risk Assessment
    
 Volatility Forecasting: Performed 10-step out-of-sample forecasting for each sector.
 
@@ -57,7 +57,7 @@ Value-at-Risk (VaR): Calculated and visualized 95% confidence interval coverage 
   5261 Presentation_Group20.pdf: The final Powerpoint used for presentation.
 
 
-Github Code Contributors:
+#### Github Code Contributors:
 * Zi Fang/zf2258
 * Yufei Jing/yj2640
 * Zikun Dong/zd2268
