@@ -1,62 +1,57 @@
-# Financial Volatility Analysis & Risk Forecasting via ARMA-GARCH Project
-## Utilizing Time Series Models to Capture and Forecast Different Markets’ Volatility
+# Financial Volatility Analysis & Risk Forecasting Project 
+# - Utilizing Time Series Models to Capture and Forecast Market Volatility
 
 Github Code Contributors:
 * Zi Fang/zf2258
 * Yufei Jing/yj2640
 * Zikun Dong/zd2268
 
-## SECTION 1: Project Overview
-This project investigates the impact of unprecedented global events (e.g., COVID-19 pandemic, 2020 Presidential Election) on financial market volatility. By analyzing five key sector ETFs (XLV, XLE, XLF, XLI, XLK) from the S&P 500, we developed sophisticated ARMA-GARCH models to capture volatility clustering and leverage effects, ultimately evaluating the model's efficacy in Value-at-Risk (VaR) forecasting.
+## Section 1: Project Overview
+This project investigates the adaptability of time series models in predicting abnormal financial market volatility caused by major social events, specifically the COVID-19 pandemic and the 2020 U.S. Presidential Election. By analyzing five S&P 500 sector ETFs (XLV, XLE, XLF, XLI, XLK), we implemented ARMA-GJR-GARCH models to capture asymmetric volatility and evaluated risk through Value-at-Risk (VaR) forecasting.
 
-## SECTION 2: Core Workflow
-1. Sector-Specific Data Analysis
-Target Assets: Healthcare (XLV), Energy (XLE), Financial (XLF), Industrial (XLI), and Technology (XLK) ETFs.
+## Section 2: Methodology
+1. Data Selection & Preprocessing
+  Assets: Five industry-representative ETFs: Healthcare (XLV), Energy (XLE), Financial (XLF), Industrial (XLI), and Technology (XLK).
 
-Data Scope: Captured the critical transition period (2019–2021) to analyze market regime shifts during the pandemic.
+  Transformation: Daily closing prices were converted to log-returns to ensure stationarity, validated by Exploratory Data Analysis (EDA) and volatility clustering observations.
 
-Preprocessing: Log-return transformation and stationarity testing (ADF test).
+2. Model Specification
+  The project follows a two-stage modeling approach for each sector:
 
-2. Model Specification & Fitting
-To account for the "heavy tails" and "asymmetry" of financial data, we implemented:
+  Mean Equation (ARMA): Optimized using auto.arima to filter autocorrelation. Models ranged from ARMA(0,0) to ARMA(6,6) depending on the sector.
 
-Mean Equation: ARMA(p,q) to filter linear dependencies.
+  Volatility Equation (GJR-GARCH): A GJR-GARCH(1,1) model was selected for all sectors to specifically account for the leverage effect (asymmetric response to positive and negative shocks).
 
-Volatility Equation: Compared multiple GARCH variants:
+  Innovation Distributions: To address heavy tails and asymmetry, we utilized:
 
-Standard GARCH: For baseline volatility clustering.
+    Student-t Distribution (std): For XLV, XLI, and XLE.
 
-GJR-GARCH & eGARCH: To capture the leverage effect (the tendency for negative shocks to increase volatility more than positive shocks).
+    Skewed Student-t Distribution (sstd): For XLK and XLF.
 
-GARCH-M (In-mean): To analyze the risk-return trade-off.
+3. Model Validation & Diagnostics
+  Statistical Testing: Applied Weighted Ljung-Box Test and Weighted ARCH-LM Test on standardized residuals to confirm the absence of remaining serial correlation and ARCH effects.
 
-Innovation Distribution: Utilized Student-t and Skewed-t distributions to better model the leptokurtic nature of market returns.
+  Information Criteria: Final models were selected based on the minimum AIC and BIC values.
 
-3. Rigorous Model Validation
-Diagnostic Checking: Conducted Ljung-Box and ARCH-LM tests on standardized residuals to ensure no remaining autocorrelation or conditional heteroscedasticity.
+4. Forecasting & Risk Assessment
+  Volatility Forecasting: Performed 10-step out-of-sample forecasting for each sector.
 
-Performance Metrics: Evaluated models using AIC/BIC for parsimony and log-likelihood for goodness-of-fit.
+  Value-at-Risk (VaR): Calculated and visualized 95% confidence interval coverage and VaR coverage to evaluate the models' performance in capturing downside risk during volatile periods.
 
-Risk Validation: - Interval Coverage: Verified the accuracy of confidence interval predictions.
+## Section 3: Key Findings
+  Leverage Effect: All five sectors exhibited significant asymmetric volatility, where negative shocks had a greater impact on future volatility than positive shocks.
 
-VaR Backtesting: Assessed the reliability of Value-at-Risk forecasts at 95% and 99% levels.
+  Sector Differences: The Energy (XLE) and Industrial (XLI) sectors showed higher volatility persistence and heavier tails compared to Healthcare (XLV) during the pandemic.
 
-## SECTION 3: Key Insights
-Asymmetric Impact: Energy (XLE) and Tech (XLK) sectors exhibited significant asymmetric volatility during market crashes.
+  Distribution Accuracy: Incorporating Skewed Student-t distributions for Tech and Financial sectors significantly improved the model's fit and risk estimation accuracy.
 
-Distribution Matters: Models assuming a Skewed-t distribution significantly outperformed Gaussian-based models in predicting extreme downside risk.
+## Section 4: Tech Stack
+  Language: R
 
-Sector Volatility: Technology showcased a faster "volatility mean-reversion" compared to the prolonged volatility seen in the Energy sector.
+  Key Libraries: rugarch, tseries, forecast, ggplot2
 
-## SECTION 4: Tech Stack
-Language: R (primarily using rugarch, tseries, and forecast libraries)
+  Keywords: GJR-GARCH, Time Series Analysis, Value-at-Risk (VaR), Volatility Clustering, Leverage Effect.
 
-Quantitative Methods: Time Series Analysis, Maximum Likelihood Estimation (MLE), Volatility Modeling, Risk Management.
-
-## SECTION 5: Repository Structure
-5261_group20.pdf: Full technical report with mathematical derivations and visualization.
-
-/scripts: R/Python scripts for model training and backtesting.
-
-/data: Processed CSV files for the 5 sector ETFs.
-
+## Section 5: Repository Final Results
+  5261_group20.pdf: The complete technical report containing mathematical formulations and result plots.
+  5261 Presentation_Group20.pdf: The final Powerpoint used for presentation.
